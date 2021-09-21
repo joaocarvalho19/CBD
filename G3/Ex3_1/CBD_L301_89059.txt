@@ -1,0 +1,53 @@
+CREATE KEYSPACE cycling WITH REPLICATION = {'class' : 'SimpleStrategy','replication_factor' : 1};
+
+DESCRIBE KEYSPACE cycling 
+
+CREATE TABLE cycling.cyclist_alt_stats ( id UUID PRIMARY KEY, lastname text, birthday timestamp, nationality text, weight text, height text );
+
+CREATE TABLE rank_by_year_and_name ( race_year int, race_name text, cyclist_name text, rank int, PRIMARY KEY ((race_year, race_name), rank) );
+
+CREATE KEYSPACE tutorialspoint WITH replication = {'class':'SimpleStrategy', 'replication_factor' : 3};
+
+ALTER KEYSPACE tutorialspoint WITH replication = {'class':'NetworkTopologyStrategy'};
+
+SELECT * FROM system_schema.keyspaces;
+
+CREATE KEYSPACE test WITH REPLICATION = { 'class' : 'NetworkTopologyStrategy', 'datacenter1' : 3 } AND DURABLE_WRITES = false;
+
+SELECT * FROM system_schema.keyspaces;
+
+DROP KEYSPACE tutorialspoint;
+
+DESCRIBE keyspaces;
+
+CREATE KEYSPACE tutorialspoint WITH replication = {'class':'SimpleStrategy', 'replication_factor' : 3};
+
+USE tutorialspoint;
+
+CREATE TABLE emp(emp_id int PRIMARY KEY,emp_name text,emp_city text,emp_sal varint,emp_phone varint);
+
+select * from emp;
+
+ALTER TABLE emp ADD emp_email text;
+
+CREATE INDEX name ON emp (emp_name);
+
+drop index name;
+
+INSERT INTO emp (emp_id, emp_name, emp_city,emp_phone, emp_sal) VALUES(1,'ram', 'Hyderabad', 9848022338, 50000);
+
+INSERT INTO emp (emp_id, emp_name, emp_city,emp_phone, emp_sal) VALUES(2,'robin', 'Hyderabad', 9848022339, 40000);
+
+INSERT INTO emp (emp_id, emp_name, emp_city,emp_phone, emp_sal) VALUES(3,'rahman', 'Chennai', 9848022330, 45000);
+
+SELECT * FROM emp;
+
+UPDATE emp SET emp_city='Delhi',emp_sal=50000 WHERE emp_id=2;
+
+SELECT emp_name, emp_sal from emp;
+
+CREATE INDEX ON emp(emp_sal);
+
+SELECT * FROM emp WHERE emp_sal=50000;
+
+DELETE emp_sal FROM emp WHERE emp_id=3;

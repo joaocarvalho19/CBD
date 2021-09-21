@@ -1,0 +1,119 @@
+#listar 25 nomes de jogadores: MATCH (n:Player) RETURN n.name LIMIT 25
+
+<Record n.name='Trent Brown'>
+<Record n.name='Ja’Wuan James'>
+<Record n.name='Lane Johnson'>
+<Record n.name='Ricky Wagner'>
+<Record n.name='Rob Havenstein'>
+<Record n.name='Morgan Moses'>
+<Record n.name='Bobby Massie'>
+<Record n.name='La’el Collins'>
+<Record n.name='Chris Hubbard'>
+<Record n.name='Bryan Bulaga'>
+<Record n.name='Mitchell Schwartz'>
+<Record n.name='Marcus Cannon'>
+<Record n.name='Daryl Williams'>
+<Record n.name='Marcus Gilbert'>
+<Record n.name='Cody Conway'>
+<Record n.name='Demar Dotson'>
+<Record n.name='Bobby Hart'>
+<Record n.name='Ty Sambrailo'>
+<Record n.name='Mike McGlinchey'>
+<Record n.name='James Hurst'>
+<Record n.name='Seantrel Henderson'>
+<Record n.name='Jack Conklin'>
+<Record n.name='George Fant'>
+<Record n.name='Kaleb McGary'>
+<Record n.name='Khalil Mack'>
+
+#listar o valores dos players por ordem decrescente: MATCH (n:Player) WITH toInt(n.total_value) as Value,n RETURN Value,n.name as Name ORDER BY Value DESC LIMIT 25;
+
+<Record Value=150000000 Name='Matt Ryan'>
+<Record Value=141000000 Name='Khalil Mack'>
+<Record Value=140000000 Name='Russell Wilson'>
+<Record Value=137500000 Name='Jimmy Garoppolo'>
+<Record Value=135000000 Name='Aaron Donald'>
+<Record Value=135000000 Name='Matt Stafford'>
+<Record Value=134000000 Name='Aaron Rodgers'>
+<Record Value=125025000 Name='Derek Carr'>
+<Record Value=122970000 Name='Andrew Luck'>
+<Record Value=114500000 Name='Von Miller'>
+<Record Value=105000000 Name='Demarcus Lawrence'>
+<Record Value=104000000 Name='Frank Clark'>
+<Record Value=103800000 Name='Cam Newton'>
+<Record Value=102600000 Name='Fletcher Cox'>
+<Record Value=100000000 Name='J.J. Watt'>
+<Record Value=97600000 Name='Tyron Smith'>
+<Record Value=96000000 Name='Andy Dalton'>
+<Record Value=94000000 Name='Alex Smith'>
+<Record Value=90000000 Name='Trey Flowers'>
+<Record Value=90000000 Name='Odell Beckham, Jr.'>
+<Record Value=88000000 Name='Nick Foles'>
+<Record Value=85000000 Name='C.J. Mosley'>
+<Record Value=85000000 Name='Dee Ford'>
+<Record Value=85000000 Name='Olivier Vernon'>
+<Record Value=84000000 Name='Kirk Cousins'>
+
+#listar a media de idades: MATCH (n:Player) WITH toInt(n.age) as Media_idades RETURN avg(Media_idades)
+
+<Record avg(Media_idades)=182.8901673640169>
+
+#listar primeiras 25 teams: MATCH (n:Team) RETURN n LIMIT 25
+
+<Record n=<Node id=2880 labels={'Team'} properties={'team': 'Raiders'}>>
+<Record n=<Node id=2881 labels={'Team'} properties={'team': 'Broncos'}>>
+<Record n=<Node id=2882 labels={'Team'} properties={'team': 'Eagles'}>>
+<Record n=<Node id=2883 labels={'Team'} properties={'team': 'Lions'}>>
+<Record n=<Node id=2884 labels={'Team'} properties={'team': 'Rams'}>>
+<Record n=<Node id=2885 labels={'Team'} properties={'team': 'Redskins'}>>
+<Record n=<Node id=2886 labels={'Team'} properties={'team': 'Bears'}>>
+<Record n=<Node id=2887 labels={'Team'} properties={'team': 'Cowboys'}>>
+<Record n=<Node id=2888 labels={'Team'} properties={'team': 'Browns'}>>
+<Record n=<Node id=2889 labels={'Team'} properties={'team': 'Packers'}>>
+<Record n=<Node id=2890 labels={'Team'} properties={'team': 'Chiefs'}>>
+<Record n=<Node id=2891 labels={'Team'} properties={'team': 'Patriots'}>>
+<Record n=<Node id=2892 labels={'Team'} properties={'team': 'Panthers'}>>
+<Record n=<Node id=2893 labels={'Team'} properties={'team': 'Cardinals'}>>
+<Record n=<Node id=2894 labels={'Team'} properties={'team': 'Titans'}>>
+<Record n=<Node id=2895 labels={'Team'} properties={'team': 'Buccaneers'}>>
+<Record n=<Node id=2896 labels={'Team'} properties={'team': 'Bengals'}>>
+<Record n=<Node id=2897 labels={'Team'} properties={'team': 'Falcons'}>>
+<Record n=<Node id=2898 labels={'Team'} properties={'team': '49ers'}>>
+<Record n=<Node id=2899 labels={'Team'} properties={'team': 'Ravens'}>>
+<Record n=<Node id=2900 labels={'Team'} properties={'team': 'Texans'}>>
+<Record n=<Node id=2901 labels={'Team'} properties={'team': 'Seahawks'}>>
+<Record n=<Node id=2902 labels={'Team'} properties={'team': 'Saints'}>>
+<Record n=<Node id=2903 labels={'Team'} properties={'team': 'Vikings'}>>
+<Record n=<Node id=2904 labels={'Team'} properties={'team': 'Jaguars'}>>
+
+listar as posicões dos players: MATCH (n:Position) RETURN n
+
+<Record n=<Node id=2868 labels={'Position'} properties={'type': 'right-tackle'}>>
+<Record n=<Node id=2869 labels={'Position'} properties={'type': '3-4-outside-linebacker'}>>
+<Record n=<Node id=2870 labels={'Position'} properties={'type': 'defensive-line'}>>
+<Record n=<Node id=2871 labels={'Position'} properties={'type': 'linebacker'}>>
+<Record n=<Node id=2872 labels={'Position'} properties={'type': '3-4-defensive-end'}>>
+<Record n=<Node id=2873 labels={'Position'} properties={'type': '4-3-defensive-tackle'}>>
+<Record n=<Node id=2874 labels={'Position'} properties={'type': '4-3-defensive-end'}>>
+<Record n=<Node id=2875 labels={'Position'} properties={'type': 'edge-rusher'}>>
+<Record n=<Node id=2876 labels={'Position'} properties={'type': 'interior-defensive-line'}>>
+<Record n=<Node id=2877 labels={'Position'} properties={'type': 'right-guard'}>>
+<Record n=<Node id=2878 labels={'Position'} properties={'type': 'left-guard'}>>
+<Record n=<Node id=2879 labels={'Position'} properties={'type': 'tight-end'}>>
+<Record n=<Node id=2920 labels={'Position'} properties={'type': 'left-tackle'}>>
+<Record n=<Node id=2921 labels={'Position'} properties={'type': '3-4-defensive-tackle'}>>
+<Record n=<Node id=2922 labels={'Position'} properties={'type': 'center'}>>
+<Record n=<Node id=2923 labels={'Position'} properties={'type': 'offensive-line'}>>
+<Record n=<Node id=2924 labels={'Position'} properties={'type': 'long-snapper'}>>
+<Record n=<Node id=2925 labels={'Position'} properties={'type': 'punter'}>>
+<Record n=<Node id=2926 labels={'Position'} properties={'type': 'inside-linebacker'}>>
+<Record n=<Node id=2927 labels={'Position'} properties={'type': 'traditional-linebacker'}>>
+<Record n=<Node id=2928 labels={'Position'} properties={'type': 'defensive-back'}>>
+<Record n=<Node id=2929 labels={'Position'} properties={'type': 'cornerback'}>>
+<Record n=<Node id=2930 labels={'Position'} properties={'type': '4-3-outside-linebacker'}>>
+<Record n=<Node id=2931 labels={'Position'} properties={'type': 'safety'}>>
+<Record n=<Node id=2932 labels={'Position'} properties={'type': 'kicker'}>>
+<Record n=<Node id=2933 labels={'Position'} properties={'type': 'wide-receiver'}>>
+<Record n=<Node id=2934 labels={'Position'} properties={'type': 'quarterback'}>>
+<Record n=<Node id=2935 labels={'Position'} properties={'type': 'running-back'}>>
+<Record n=<Node id=2936 labels={'Position'} properties={'type': 'fullback'}>>

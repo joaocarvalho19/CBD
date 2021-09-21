@@ -1,0 +1,127 @@
+exit
+SET Book:1 "Infinite Jest"
+GET Book
+GET Book:1
+SET Book:1:ReadAction 1
+GET Book:1
+GET Book:1:ReadAction
+INCR Book:1:ReadAction
+GET Book:1:ReadAction
+INCRBY Book:1:ReadAction 20
+DECR Book:1:ReadAction
+INCR Book:1 "Infinite Jest"
+INCR Book:1 "Infinite Jest" 1
+INCR Book:1:"Infinite Jest" 1
+INCR Book:1:"Infinite Jest"
+LPUSH Book:1:comment "This was a fun read"
+LRANGE Book:1:comment 0 -1
+LRANGE Book:1:comment 0 0
+LRANGE Book:1:comment 1 0
+LRANGE Book:1:comment 0 1
+LRANGE Book:1:comment 0 2
+LPUSH Book:1:comment "Way too long!"
+LRANGE Book:1:comment 1 0
+LRANGE Book:1:comment 1 -1
+LRANGE Book:1:comment 0 -1
+LRANGE Book:1:comment 2 -1
+GET Book:1
+SET Book:1:ReadAction 1
+GET Book:1
+GET Book:1:ReadAction
+INCR Book:1:ReadAction
+GET Book:1:ReadAction
+INCRBY Book:1:ReadAction 20
+DECR Book:1:ReadAction
+INCR Book:1 "Infinite Jest"
+INCR Book:1 "Infinite Jest" 1
+INCR Book:1:"Infinite Jest" 1
+INCR Book:1:"Infinite Jest"
+LPUSH Book:1:comment "This was a fun read"
+LRANGE Book:1:comment 0 -1
+LRANGE Book:1:comment 0 0
+LRANGE Book:1:comment 1 0
+LRANGE Book:1:comment 0 1
+LRANGE Book:1:comment 0 2
+LPUSH Book:1:comment "Way too long!"
+LRANGE Book:1:comment 1 0
+LRANGE Book:1:comment 1 -1
+LRANGE Book:1:comment 0 -1
+LRANGE Book:1:comment 2 -1
+LRANGE Book:1:comment 1 -1
+LRANGE Book:1:comment 1 2
+LRANGE Book:1:comment 0 -1
+RPUSH Book:1:comment "Tennis anyone?"
+exit
+LRANGE Book:1:comment 0 -1
+exit
+ping
+dbsize
+LRANGE Book:1:comment 0 -1
+lpop Book:1:comment
+LRANGE Book:1:comment 0 -1
+rpop Book:1:comment
+LRANGE Book:1:comment 0 -1
+RPUSH Organization:1:members Person:1 Person:2 Person:3 Person:4
+lrange Organization:1:members 0 -1
+LTRIM Organization:1:members 0 2
+LRANGE Organization:1:members 0 -1
+LRANGE Organization:1:members 0 1
+LRANGE Organization:1:members 0 0
+LRANGE Organization:1:members 0 3
+LRANGE Organization:1:members 0 2
+BRPOP Organization:1:members 5
+lrange Organization:1:members 0 -1
+hset key "ola"
+hset key name "ola"
+hget key
+haset key name
+hget key name
+HMSET Book name "Slaughterhouse-Five" author "Kurt Vonnegut" copyrightYear 1969 ISBN 29960763
+hmget Book author ISBN
+HEXISTS Book copyrightYear
+HEXISTS Book copyrightYea
+hlen Book
+hkeys Book
+hvals Book
+HDEL Book copyrightYear
+hget Book copyrightYear
+SET Movie:1 "Blade Runner"
+HSET Movie:2 name "Star Wars"
+SADD Movie:3 "2001 a Space Odyssey"
+setbit Movie:UserPlays:2014-12-11 2 1
+save
+monitor
+get a
+exit
+SET testkey hello
+exit
+DBSIZE
+SET testkey hello
+EXISTS testkey
+SET Book:1 "Infinity jest"
+GET Book:1
+SET Book:1:ReadAction 1
+GET Book:1:ReadAction
+INCR Book:1:ReadAction
+INCRBY Book:1:ReadAction 20
+LPUSH Book:1:comment "This was a fun read"
+LPUSH Book:1:comment "Fantastic!"
+LRANGE Book:1:comment
+LRANGE Book:1:comment 0
+LRANGE Book:1:comment 0 1
+LRANGE Book:1:comment 0 -1
+RPUSH Book:1:comment "Tennis anyone?"
+LRANGE Book:1:comment 0 -1
+RPUSH Organization:1:members Person:1 Person:2 Person:3 Person:4
+LRANGE Organization:1:members 0 -1
+LTRIM Organization:1:members 0 1
+LRANGE Organization:1:members 0 -1
+HSET Book:3 name "Cats Cradle"
+HGET Book:3 name
+HEXISTS Book:2 name
+HEXISTS Book:3 name
+HLEN Book:2
+HLEN Book:3
+HKEYS Book:3
+exit
+

@@ -1,0 +1,29 @@
+#listar o nome de todos os filmes
+db.movies.find({}, {_id:0, originalTitle:1}).pretty()
+
+#listar o nome dos filmes do ano "1994"
+db.movies.find({year:"1994"}, {_id:0, originalTitle:1}).pretty() 
+
+#listar quantos filmes foram lançados em 2008
+db.movies.find({year:"2008"}, {_id:0, originalTitle:1}).count()
+
+#listar os filmes que sejam Biografias
+db.movies.find({genres:"Biography"}, {_id:0, originalTitle:1,genres:1}).pretty()
+
+#listar os filmes com IMDB Rating superior ou igual a 9
+db.movies.find({"imdbRating":{$gte:9}},{"_id":0,"originalTitle":1,"imdbRating":1}).pretty()
+
+#listar o nome dos filmes que obteve pelo menos um rating de 10
+db.movies.find({"ratings":{$eq:10}},{"_id":0,"originalTitle":1}).pretty()
+
+#listar os filmes com IMDB rating superior ou igual a 7 que atuou o Al Pacino
+db.movies.find({$and: [{"actors":"Al Pacino"},{"imdbRating":{$gte:7}}]},{"_id":0,"originalTitle":1,"imdbRating":1,"actors":1}).pretty()
+
+#listar a soma dos IMDB ratings de cada ano de lançamento
+db.movies.aggregate({ $group: { _id: "$year", total: { $sum: "$imdbRating" } } })
+
+#listar quantos filmes de Crime existem por ano de lançamento por ordem decrescente
+db.movies.aggregate([{ $match: {genres:"Crime"} },{ $group: { _id: "$year", count: { $sum: 1 } } }, { $sort: { count: -1 } }])
+
+#listar a soma de IMDB ratings de cada lista de generos por ordem decrescente
+db.movies.aggregate({ $group: { _id: "$genres", total: { $sum: "$imdbRating" } } }, { $sort: { total: -1 } })

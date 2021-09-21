@@ -1,0 +1,43 @@
+// NMEC: 89059
+
+LOAD CSV WITH HEADERS
+FROM "file:///git_selection.csv"
+AS line
+
+MERGE (user:Member {svn_id: line.svn_id})
+SET user.real_name=line.real_name, user.organization=line.organization
+
+MERGE (project:Project {project_name: line.project_name})
+
+#nao consegui fazer o bloco abaixo
+#########
+LOAD CSV WITH HEADERS
+FROM "file:///git_selection.csv"
+AS line
+
+MATCH (user:Member {svn_id: line.svn_id}),(project:Project {project_name:line.project_name})
+CREATE (user)-[:COMMITED {num: line.num, role_on_project: line.role_on_project}]->(project)
+
+##############
+
+LOAD CSV WITH HEADERS FROM 'file:///git_selection.csv' AS line
+CREATE (:Git {num: toInteger(line.num), svn_id: line.svn_id, real_name: line.real_name, project_name: line.project_name})
+
+#1
+MATCH (n) RETURN n.svn_id,collect(n.real_name),collect(n.project_name),collect(n.num)
+
+#2
+MATCH (n) RETURN n.svn_id,collect(n.real_name)
+
+#3
+MATCH (n) WITH n, collect(n.svn_id) as Num_users WITH count(Num_users) as Num_user, n.project_name as Project_Name, collect(n.real_name) as Name, collect(n.num) as Num  WHERE count(Num_users)>=1 RETURN Project_Name,Num_user, Name, Num
+
+#4
+MATCH (n) WITH n, collect(n.project_name) as Total_Projectos WITH count(Total_Projectos) as Total_Projectos, n.svn_id as User, collect(n.real_name) as Name, collect(n.num) as Num RETURN User,Total_Projectos
+
+#5
+MATCH (n) WITH n, collect(n.project_name) as Total_Projectos WITH count(Total_Projectos) as Total_Projectos, n.svn_id as User, collect(n.real_name) as Name, collect(n.num) as Num RETURN User,Total_Projectos ORDER BY Total_Projectos DESC;
+
+#6
+MATCH (n) WITH n.project_name as Projectos, collect(n.svn_id) as Users, collect(n.real_name) as Name, collect(n.num) as Num RETURN Projectos, Users
+

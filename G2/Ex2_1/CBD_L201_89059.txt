@@ -1,0 +1,118 @@
+> show db
+admin   0.000GB
+based   0.000GB
+config  0.000GB
+local   0.000GB
+
+> use mydb
+
+> db.dropDatabase()
+{ "dropped" : "mydb", "ok" : 1 }
+
+
+> db.createCollection("collectionTest")
+{ "ok" : 1 }
+
+> show collections
+collectionTest
+
+> db.tutorialspoint.insert({"name" : "tutorialspoint"})      #No mongodb não é preciso criar collections, basta inserir um documento
+WriteResult({ "nInserted" : 1 })
+
+> db.users.insertOne({"name": "Joao","age": "20", "genre": "male"})
+{
+	"acknowledged" : true,
+	"insertedId" : ObjectId("5f97153963be3ccd6cc6974f")
+}
+
+> db.users.insertOne({"name": "Ana","age": "29", "genre": "female"})
+{
+	"acknowledged" : true,
+	"insertedId" : ObjectId("5f9716f763be3ccd6cc69750")
+}
+
+> db.users.find()
+{ "_id" : ObjectId("5f97153963be3ccd6cc6974f"), "name" : "Joao", "age" : "20", "genre" : "male" }
+{ "_id" : ObjectId("5f9716f763be3ccd6cc69750"), "name" : "Ana", "age" : "29", "genre" : "female" }
+
+> db.users.find({name:"Joao"})
+{ "_id" : ObjectId("5f97153963be3ccd6cc6974f"), "name" : "Joao", "age" : "20", "genre" : "male" }
+
+> db.users.updateOne({name: "Joao"}, {$set: {"age": 21}});
+{ "acknowledged" : true, "matchedCount" : 1, "modifiedCount" : 1 }
+
+> db.users.find().pretty()
+{
+	"_id" : ObjectId("5f97153963be3ccd6cc6974f"),
+	"name" : "Joao",
+	"age" : 21,
+	"genre" : "male"
+}
+{
+	"_id" : ObjectId("5f9716f763be3ccd6cc69750"),
+	"name" : "Ana",
+	"age" : "29",
+	"genre" : "female"
+}
+
+> db.users.deleteOne({name:"Joao"})
+{ "acknowledged" : true, "deletedCount" : 1 }
+
+> db.users.find().pretty()
+{
+	"_id" : ObjectId("5f9716f763be3ccd6cc69750"),
+	"name" : "Ana",
+	"age" : "29",
+	"genre" : "female"
+}
+
+> db.users.insertMany([{"name" : "Afonso", "age" : "20", "genre" : "male"},{"name" : "Sofia", "age" : "12", "genre" : "female"}])
+{
+	"acknowledged" : true,
+	"insertedIds" : [
+		ObjectId("5f971ab663be3ccd6cc69751"),
+		ObjectId("5f971ab663be3ccd6cc69752")
+	]
+}
+
+> db.users.find({age:{$in:["20","29"]}}).pretty()
+{
+	"_id" : ObjectId("5f9716f763be3ccd6cc69750"),
+	"name" : "Ana",
+	"age" : "29",
+	"genre" : "female"
+}
+{
+	"_id" : ObjectId("5f971ab663be3ccd6cc69751"),
+	"name" : "Afonso",
+	"age" : "20",
+	"genre" : "male"
+}
+
+> db.users.find({age:{$lt:"19"}}).pretty()
+{
+	"_id" : ObjectId("5f971ab663be3ccd6cc69752"),
+	"name" : "Sofia",
+	"age" : "12",
+	"genre" : "female"
+}
+
+> > db.users.aggregate([{$sort: {age: 1}}]).pretty()
+{
+	"_id" : ObjectId("5f971ab663be3ccd6cc69752"),
+	"name" : "Sofia",
+	"age" : "12",
+	"genre" : "female"
+}
+{
+	"_id" : ObjectId("5f971ab663be3ccd6cc69751"),
+	"name" : "Afonso",
+	"age" : "20",
+	"genre" : "male"
+}
+{
+	"_id" : ObjectId("5f9716f763be3ccd6cc69750"),
+	"name" : "Ana",
+	"age" : "29",
+	"genre" : "female"
+}

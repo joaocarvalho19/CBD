@@ -1,0 +1,67 @@
+// NMEC: 89059
+#1
+MATCH (movie)<-[:ACTED_IN|:DIRECTED]-(actor)
+RETURN actor.name, movie.title
+
+#2
+MATCH (movie)<-[:ACTED_IN]-(actor)
+WHERE movie.released > 2005
+RETURN movie.released,actor.name
+
+#3
+MATCH (x)<-[r]-(y)
+WITH x, count(r) AS count
+WHERE count > 1
+MATCH (x)-[r]->(y)
+RETURN x,r,y;
+
+#4
+match (p:Person)-[:REVIEWED]->(m:Movie)
+return collect(p.name), m.title
+
+#5
+match (p:Person)-[r:ACTED_IN]->(m:Movie)
+return collect(p.name), m.title
+
+#6
+match (p:Person)-[r:ACTED_IN]->(m:Movie)
+WHERE m.title="Apollo 13"
+return m.title,round(2019-avg(p.born)) as avgAge
+
+#7
+match (p:Person)-[r:ACTED_IN]->(m:Movie)
+WITH 2019-avg(p.born) as avgAge,m
+return m.title, round(100 * avgAge)/100 as avgAge
+ORDER BY avgAge DESC LIMIT 10;
+
+#9
+match (p)-[r]->(m)
+WHERE p.name = " John Cusack" and m.name = "Demi Moore"
+return type(r)
+
+#12
+MATCH path=shortestPath((start_node:Person)-[*]-(end_node:Person {name:"Jim Cash"}))
+WHERE start_node <> end_node
+UNWIND nodes(path) as n
+WITH start_node, path, COUNT(DISTINCT n) as dimension
+WHERE dimension = 2
+RETURN start_node
+
+#13
+MATCH path=shortestPath((start_node:Person)-[*]-(end_node:Person {name:"Kevin Bacon"}))
+WHERE start_node <> end_node
+UNWIND nodes(path) as n
+WITH start_node, path, COUNT(DISTINCT n) as dimension
+ORDER BY dimension DESC
+LIMIT 1
+RETURN dimension
+
+#14
+MATCH path=shortestPath((start_node:Person)-[*]-(end_node:Person))
+WHERE start_node <> end_node
+UNWIND nodes(path) as n
+WITH start_node, path, COUNT(DISTINCT n) as dimension
+ORDER BY dimension DESC
+LIMIT 1
+RETURN dimension
+

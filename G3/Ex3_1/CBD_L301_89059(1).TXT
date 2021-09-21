@@ -1,0 +1,7 @@
+CREATE KEYSPACE cycling WITH REPLICATION = {'class' : 'SimpleStrategy','replication_factor' : 1};
+
+DESCRIBE KEYSPACE cycling 
+
+CREATE TABLE cycling.cyclist_alt_stats ( id UUID PRIMARY KEY, lastname text, birthday timestamp, nationality text, weight text, height text );
+
+CREATE TABLE rank_by_year_and_name ( race_year int, race_name text, cyclist_name text, rank int, PRIMARY KEY ((race_year, race_name), rank) );
